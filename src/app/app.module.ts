@@ -10,7 +10,8 @@ import { UiModule } from './ui/ui.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -19,6 +20,7 @@ import { UiModule } from './ui/ui.module';
     MatIconModule,
     MatButtonModule,
     UiModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

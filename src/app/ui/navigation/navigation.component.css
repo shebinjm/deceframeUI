@@ -1,0 +1,16 @@
+.example-container {
+  /*height: 50%;
+  width: 50%;
+  margin: -1px;
+  background-color: blueviolet;*/
+  position: absolute;
+  right: 0px;
+  width: 200px;
+  height: 100%;
+  border: 3px solid #49c5b6;
+  background-color: #49c5b6;
+  color:#fff;
+  border-color: #49c5b6
+}
+
+
