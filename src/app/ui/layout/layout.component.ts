@@ -1,24 +1,16 @@
-// import { Component, OnInit } from '@angular/core';
-
-
-// export class LayoutComponent implements OnInit {
-
-//   constructor() { }
-
-//   ngOnInit() {
-//   }
-
-// }
-
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import {NestedTreeControl} from '@angular/cdk/tree';
 import {MatTreeNestedDataSource} from '@angular/material/tree';
 import {BehaviorSubject, Observable, of as observableOf} from 'rxjs';
+import {DececlientService,DeceEvent} from '../../service/dececlient.service';
+import { Router } from '@angular/router';
 
-export class FileNode {
-  children: FileNode[];
-  filename: string;
-  type: any;
+export class DeceEventNode {
+  children: DeceEventNode[];
+  nodeName: string;
+  public event:string;
+  public sensor:string;
+  public timestamp:string;
 }
 
 
@@ -27,39 +19,81 @@ export class FileNode {
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.css']
 })
-export class LayoutComponent {
-  title = 'treedemo';
-  nestedTreeControl: NestedTreeControl<FileNode>;
-  nestedDataSource: MatTreeNestedDataSource<FileNode>;
-  dataChange: BehaviorSubject<FileNode[]> = new BehaviorSubject<FileNode[]>([]);
+export class LayoutComponent implements OnInit{
+  mychildren: DeceEventNode[];
+  deceEvents:DeceEvent[];
+  title = 'eventTree';
+  nestedTreeControl: NestedTreeControl<DeceEventNode>;
+  nestedDataSource: MatTreeNestedDataSource<DeceEventNode>;
+  dataChange: BehaviorSubject<DeceEventNode[]> = new BehaviorSubject<DeceEventNode[]>([]);
 
-  constructor() {
-    this.nestedTreeControl = new NestedTreeControl<FileNode>(this._getChildren);
+  constructor(private router: Router,
+    private dececlientService: DececlientService) {
+    
+    this.nestedTreeControl = new NestedTreeControl<DeceEventNode>(this._getChildren);
     this.nestedDataSource = new MatTreeNestedDataSource();
 
     this.dataChange.subscribe(data => this.nestedDataSource.data = data);
 
+    // this.dataChange.next([
+    //   {
+    //     nodeName:"127.0.0.1",
+    //     event :"",
+    //     sensor:"",
+    //     timestamp:"",
+    //     children:[]
+    //   }
+    // ]);
+
     this.dataChange.next([
       {
-        filename: "folder",
-        type: "",
+        nodeName:"127.0.0.1",
+        event :"xxx",
+        sensor:"",
+        timestamp:"",
         children: [
           {
-            filename: "test3",
-            type: "exe",
-            children: [],
+            nodeName:"127.0.0.2",
+        event :"yyy",
+        sensor:"",
+        timestamp:"",
+        children:[],
           }
         ],
       },
       {
-        filename: "test2",
-        type: "exe",
-        children: [],
+        nodeName:"127.0.0.3",
+        event :"zzz",
+        sensor:"",
+        timestamp:"",
+        children:[],
       },
     ]);
+
+    
   }
 
-  private _getChildren = (node: FileNode) => { return observableOf(node.children); };
+  ngOnInit() {
+    this.dececlientService.getDeceEvents().subscribe(
+     response =>this.handleSuccessfulResponse(response),
+    );
+  }
+
+handleSuccessfulResponse(response)
+{
+  this .deceEvents=response;
+ // let d = response.json();
+  //console.log("result = " + d.result);
+  //console.log("url = " + d.image_url);      
+  // for(let deceEvent of this.deceEvents){
+    
+  //   this.mychildren[]=
+  // }
+   // this.mychildren=response;
+}
+
+
+  private _getChildren = (node: DeceEventNode) => { return observableOf(node.children); };
   
-  hasNestedChild = (_: number, nodeData: FileNode) => {return !(nodeData.type); };
+  hasNestedChild = (_: number, nodeData: DeceEventNode) => {return !(nodeData.sensor); };
 }

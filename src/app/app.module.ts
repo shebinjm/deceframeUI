@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatTreeModule, MatIconModule, MatButtonModule } from '@angular/material';
 import { UiModule } from './ui/ui.module';
+import { HttpClientModule } from '@angular/common/http'; 
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { UiModule } from './ui/ui.module';
     MatButtonModule,
     UiModule,
     BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
