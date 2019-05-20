@@ -26,20 +26,30 @@ export class HeaderComponent implements OnInit {
   private initIoConnection(): void {
     this.socketService.initSocket();
 
-    // this.ioConnection = this.socketService.onMessage()
-    //   .subscribe((data: any) => {
-    //     this.messages.push(data.pipe(data => data.map(event => ({eventid: event.eventid, src_ip: event.src_ip,
-    //       timestamp:event.timestamp,message:event.message,sensor:event.sensor}))).subscribe(data => console.info(data)));
-    //   });
+    this.ioConnection = this.socketService.onMessage()
+      .subscribe((data: any) => {
+        
+        this.messages = data.map( (event) => {            
+            return {
+            eventid: event.eventid, 
+            src_ip: event.src_ip,
+            timestamp:event.timestamp,
+            message:event.message,
+            sensor:event.sensor
+          }
+                              });
+                console.log(this.messages);              
+        // this.messages.push(data.pipe(data => data.map(event => ({eventid: event.eventid, src_ip: event.src_ip,
+        //   timestamp:event.timestamp,message:event.message,sensor:event.sensor}))).subscribe(data => console.info(data)));
+      
+      
+        });
 
-      this.ioConnection = this.socketService.onMessage()
-      .subscribe(() => {
-        console.log('got message');
-      });
+    
 
     this.socketService.onEvent(Event.CONNECT)
       .subscribe(() => {
-        console.log('connected');
+        console.log('connected 1');
       });
       
     this.socketService.onEvent(Event.DISCONNECT)
