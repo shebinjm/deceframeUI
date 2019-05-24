@@ -1,28 +1,49 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit,ViewEncapsulation } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { Event } from '../../model/event';
 import { Message } from '../../model/message';
 import { User } from '../../model/user';
 import { SocketService } from '../../service/socket.service';
 import { AuthenticationService } from '../../service/authentication.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class HeaderComponent implements OnInit {
 
+  loginFormModalEmail = new FormControl('Your email', Validators.email);
+  loginFormModalPassword = new FormControl('', Validators.required);
+  invalidLogin = false
   user: User;
   messages: Event[] = [];
   messageContent: string;
   ioConnection: any;
 
   constructor(private socketService: SocketService,
-    private loginService:AuthenticationService) { }
+    private loginService:AuthenticationService,private router: Router,
+    ) { }
 
   ngOnInit() {
     this.initIoConnection();
+  }
+
+  checkLogin() {
+    if (this.loginService.authenticate(this.loginFormModalEmail, this.loginFormModalPassword)
+    ) {
+      this.router.navigate([''])
+      this.invalidLogin = false
+    } else
+      this.invalidLogin = true
+  }
+
+  performLogout() {
+    this.loginService.logOut();
+    this.router.navigate(['login']);
   }
 
   private initIoConnection(): void {
@@ -79,6 +100,8 @@ export class HeaderComponent implements OnInit {
   //   this.messageContent = null;
   // }
 
+
+  
 
   
 }
