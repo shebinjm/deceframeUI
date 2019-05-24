@@ -14,4 +14,10 @@
       <a class="navbar-brand" href="/">&nbsp;&nbsp;Deceframe</a>
     </div>
   </div>
+  <ul class="navbar-nav">
+     
+    <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="../login" class="nav-link">Login</a></li>
+    <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="../logout" class="nav-link">LogOut</a></li>
+  
+  </ul>
 </nav>

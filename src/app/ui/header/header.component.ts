@@ -4,6 +4,7 @@ import { Event } from '../../model/event';
 import { Message } from '../../model/message';
 import { User } from '../../model/user';
 import { SocketService } from '../../service/socket.service';
+import { AuthenticationService } from '../../service/authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -17,7 +18,8 @@ export class HeaderComponent implements OnInit {
   messageContent: string;
   ioConnection: any;
 
-  constructor(private socketService: SocketService) { }
+  constructor(private socketService: SocketService,
+    private loginService:AuthenticationService) { }
 
   ngOnInit() {
     this.initIoConnection();
