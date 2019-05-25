@@ -10,7 +10,6 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { SecondComponent } from './second/second.component';
 import { FirstComponent } from './first/first.component';
 import {RouterModule, Routes} from "@angular/router";
-import {CustomMaterialModule} from "../core/material.module";
 import  {AuthGaurdService} from '../service/auth-gaurd.service';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
@@ -39,7 +38,7 @@ const appRoutes: Routes = [
       appRoutes,
       { useHash: true } // <-- debugging purposes only
     ),
-    CustomMaterialModule
+    
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   exports: [LayoutComponent]
