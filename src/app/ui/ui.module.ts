@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 import { LayoutComponent } from './layout/layout.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { MatTreeModule, MatIconModule, MatButtonModule } from '@angular/material';
 import { NavigationComponent } from './navigation/navigation.component';
 import { SecondComponent } from './second/second.component';
 import { FirstComponent } from './first/first.component';
@@ -31,9 +30,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatTreeModule,
-    MatIconModule,
-    MatButtonModule,
+    
     RouterModule.forRoot(
       appRoutes,
       { useHash: true } // <-- debugging purposes only
