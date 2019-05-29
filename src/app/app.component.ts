@@ -7,6 +7,7 @@ export class FileNode {
   children: FileNode[];
   filename: string;
   type: any;
+
 }
 
 @Component({
@@ -15,7 +16,7 @@ export class FileNode {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'treedemo';
+  title = 'DeceFrame';
   nestedTreeControl: NestedTreeControl<FileNode>;
   nestedDataSource: MatTreeNestedDataSource<FileNode>;
   dataChange: BehaviorSubject<FileNode[]> = new BehaviorSubject<FileNode[]>([]);

@@ -11,7 +11,8 @@ import { FirstComponent } from './first/first.component';
 import {RouterModule, Routes} from "@angular/router";
 import  {AuthGaurdService} from '../service/auth-gaurd.service';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import {LoginModalComponent} from './login-modal/login-modal.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 const appRoutes: Routes = [
@@ -22,14 +23,14 @@ const appRoutes: Routes = [
 
 @NgModule({
   declarations: [NavigationComponent,SecondComponent,
-    FirstComponent,LayoutComponent, HeaderComponent, FooterComponent,  ],
+    FirstComponent,LayoutComponent, HeaderComponent, FooterComponent,LoginModalComponent  ],
   imports: [
-    MDBBootstrapModule.forRoot(),
     CommonModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    NgbModule,
     
     RouterModule.forRoot(
       appRoutes,
@@ -38,6 +39,9 @@ const appRoutes: Routes = [
     
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
-  exports: [LayoutComponent]
+  exports: [LayoutComponent],
+  entryComponents: [
+    LoginModalComponent
+  ]
 })
 export class UiModule {}
