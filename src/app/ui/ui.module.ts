@@ -11,8 +11,8 @@ import { FirstComponent } from './first/first.component';
 import {RouterModule, Routes} from "@angular/router";
 import  {AuthGaurdService} from '../service/auth-gaurd.service';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import {LoginModalComponent} from './login-modal/login-modal.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {FormModalComponent} from './form-modal/form-modal.component'
 
 
 const appRoutes: Routes = [
@@ -22,8 +22,8 @@ const appRoutes: Routes = [
   ];
 
 @NgModule({
-  declarations: [NavigationComponent,SecondComponent,
-    FirstComponent,LayoutComponent, HeaderComponent, FooterComponent,LoginModalComponent  ],
+  declarations: [NavigationComponent,SecondComponent,FormModalComponent,
+    FirstComponent,LayoutComponent, HeaderComponent, FooterComponent  ],
   imports: [
     CommonModule,
     BrowserModule,
@@ -41,7 +41,7 @@ const appRoutes: Routes = [
   schemas: [ NO_ERRORS_SCHEMA ],
   exports: [LayoutComponent],
   entryComponents: [
-    LoginModalComponent
+    FormModalComponent
   ]
 })
 export class UiModule {}

@@ -1,22 +1,22 @@
 <nav class="navbar navbar-dark header-bg">
   <div class="navbar-expand mr-auto">
     <div class="navbar-nav">
-        <a class="navbar-brand" href="/">&nbsp;&nbsp;Deceframe</a>
+      <a class="navbar-brand" href="/">&nbsp;&nbsp;Deceframe</a>
       <a class="btn btn-warning" href="#">Dashboard</a>
       <a class="nav-item nav-link" href="#">Decoys</a>
-<!--      <a class="nav-item nav-link" href="#">Contact</a> -->
+      <!--      <a class="nav-item nav-link" href="#">Contact</a> -->
     </div>
   </div>
   <div class="navbar-expand ml-auto navbar-nav">
     <div class="navbar-nav">
-        <button type="button" class="btn btn-primary">
-            Notifications <span class="badge badge-light">4</span>
-          </button>
-      
-      <a *ngIf="loginService.isUserLoggedIn()" routerLink="../logout" class="nav-link">LogOut</a>
-    <a class="nav-link" href="#" (click)="open(content)" data-backdrop="static" data-keyboard="false">SignIn</a>
+      <button type="button" class="btn btn-primary">
+        Notifications <span class="badge badge-light">4</span>
+      </button>
+
+      <a *ngIf="loginService.isUserLoggedIn()" routerLink="../logout" (click)="performLogout()"
+        class="nav-link">LogOut</a>
+      <a *ngIf="!loginService.isUserLoggedIn()" (click)="openFormModal()" class="nav-link">SignIn</a>
     </div>
   </div>
 
 </nav>
-
