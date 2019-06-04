@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 
 export class DeceEvent{
   constructor(
@@ -20,6 +20,11 @@ export class DececlientService {
 
      getDeceEvents()
   {
+    let username='deceframe'
+    let password='admin123'
+  
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
+    
     return this.httpClient.get<DeceEvent[]>('http://localhost:8080/deceframe/decEvents');
   }
 }
